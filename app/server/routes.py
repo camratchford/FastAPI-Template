@@ -14,8 +14,6 @@ from app.users.models import User
 
 from app.endpoints.routes import router as endpoints_router
 
-config.configure_basic_logging()
-config.configure_logging()
 
 logger = logging.getLogger(__name__)
 
