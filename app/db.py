@@ -14,7 +14,7 @@ class Base(DeclarativeBase):
 
 
 engine = create_async_engine(config.sql_alchemy_uri)
-async_session_maker = async_sessionmaker(engine, expire_on_commit=False)
+# async_session_maker = async_sessionmaker(engine, expire_on_commit=True, autoflush=True)
 
 async def create_db_and_tables():
     async with engine.begin() as conn:
@@ -22,7 +22,7 @@ async def create_db_and_tables():
 
 
 async def get_async_session() -> AsyncGenerator[AsyncSession, None]:
-    async with async_sessionmaker() as session:
+    async with async_sessionmaker(engine, expire_on_commit=True, autoflush=True)() as session:
         yield session
 
 

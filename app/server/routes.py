@@ -4,6 +4,7 @@ from fastapi import Depends, FastAPI
 
 
 from app.config import config
+from app.defaults import swagger_ui_config
 
 from app.db import create_db_and_tables
 
@@ -18,7 +19,7 @@ config.configure_logging()
 
 logger = logging.getLogger(__name__)
 
-app = FastAPI()
+app = FastAPI(title="FastAPI-Template", swagger_ui_parameters=swagger_ui_config)
 app.include_router(
     fastapi_users.get_auth_router(auth_backend), prefix="/auth/jwt", tags=["auth"]
 )

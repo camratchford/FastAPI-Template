@@ -2,8 +2,8 @@ import uuid
 from typing import Optional
 
 from fastapi import Depends, Request
-from fastapi_users import BaseUserManager, FastAPIUsers, UUIDIDMixin
 
+from fastapi_users import BaseUserManager, FastAPIUsers, IntegerIDMixin
 from fastapi_users.authentication.strategy.db import AccessTokenDatabase, DatabaseStrategy
 from fastapi_users.authentication import (
     AuthenticationBackend,
@@ -12,11 +12,10 @@ from fastapi_users.authentication import (
 from fastapi_users.db import SQLAlchemyUserDatabase
 
 from app.users.models import User, get_user_db, AccessToken, get_access_token_db
-
 from app.config import config
 
 
-class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
+class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
     reset_password_token_secret = config.secret_key
     verification_token_secret = config.secret_key
 

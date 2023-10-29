@@ -29,3 +29,22 @@ default_log_config = {
         },
     }
 }
+
+swagger_ui_config = {
+    "syntaxHighlight": True,
+    'requestSnippetsEnabled': True,
+    'requestSnippets': {
+        'generators': {
+            'curl_bash': {
+              'title': "cURL (bash)",
+              'syntax': "bash"
+            },
+            'curl_powershell': {
+              'title': "cURL (PowerShell)",
+              'syntax': "powershell"
+            }
+        },
+        'defaultExpanded': True,
+        'languages': None,
+    }
+}
