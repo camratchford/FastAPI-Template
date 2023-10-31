@@ -1,8 +1,9 @@
 [project]
-name = 'Project'
-description = 'Project Description'
-authors = [
-    {name = 'Cam Ratchford', email = 'camratchford@gmail.com'},
+name = '{{ project_stub }}'
+description = '{{ project_description }}'
+authors = [{% for author in project_authors %}
+    {name = '{{ author.name }}', email = '{{ author.email }}'},
+    {% endfor %}
 ]
 
 classifiers = [
@@ -69,8 +70,8 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = 'https://github.com/camratchford/Project'
-Source = 'https://github.com/camratchford/Project'
+Homepage = '{{ project_repo }}'
+Source = '{{ project_repo }}'
 
 [project.scripts]
-app_run = "app.cli:cli"
+{{ project_stub }} = "{{ project_stub }}.cli:run"

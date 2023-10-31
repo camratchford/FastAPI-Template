@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 from sqlalchemy.orm import DeclarativeBase
 
 
-from app.config import config
+from {{ project_stub }}.config import config
 
 
 class Base(DeclarativeBase):
@@ -14,7 +14,7 @@ class Base(DeclarativeBase):
 
 
 engine = create_async_engine(config.sql_alchemy_uri)
-# async_session_maker = async_sessionmaker(engine, expire_on_commit=True, autoflush=True)
+async_session_maker = async_sessionmaker(engine, expire_on_commit=False)
 
 async def create_db_and_tables():
     async with engine.begin() as conn:
@@ -22,7 +22,7 @@ async def create_db_and_tables():
 
 
 async def get_async_session() -> AsyncGenerator[AsyncSession, None]:
-    async with async_sessionmaker(engine, expire_on_commit=True, autoflush=True)() as session:
+    async with async_sessionmaker() as session:
         yield session
 
 

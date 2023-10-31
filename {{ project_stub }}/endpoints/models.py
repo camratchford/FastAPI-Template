@@ -1,7 +1,7 @@
 
 from sqlalchemy import Column, ForeignKey, Integer, String
 
-from app.db import Base
+from {{ project_stub }}.db import Base
 
 
 class Endpoint(Base):

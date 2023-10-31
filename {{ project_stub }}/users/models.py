@@ -7,15 +7,13 @@ from fastapi_users_db_sqlalchemy.access_token import (
 )
 
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import Integer, ForeignKey, String, Column
+from sqlalchemy import Integer, ForeignKey
 
-from app.db import Base, get_async_session
+from {{ project_stub }}.db import Base, get_async_session
 
 
 class User(SQLAlchemyBaseUserTable[int], Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    first_name = Column(String)
-    last_name = Column(String)
 
 
 async def get_user_db(session: AsyncSession = Depends(get_async_session)):
